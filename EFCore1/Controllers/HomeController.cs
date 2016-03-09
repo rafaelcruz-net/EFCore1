@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EFCore1.Infra;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,13 @@ namespace EFCore1.Controllers
 {
     public class HomeController : Controller
     {
+        Context context = new Context();
+
         public ActionResult Index()
         {
+            var post = (from x in context.Posts
+                        select x).ToList();
+
             return View();
         }
 
